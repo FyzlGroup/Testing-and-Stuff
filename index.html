@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>FyzlGroup Loan Status</title>
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://i.imgur.com/m7CiCu3_d.png">
+
+</head>
+
+<body>
+
+  <iframe
+    id="loanFrame"
+    width="100%"
+    height="100%"
+    allowfullscreen="true"
+    style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;">
+  </iframe>
+
+  <script>
+
+    const WEB_APP =
+      "https://script.google.com/a/macros/fyzlgroup.com/s/AKfycbyyee20Ze4QRDJSxf5QBPH-rNA2wE7sWftINsYarJT7lsSzdsqdMQkZCbZ-TVo86I7iIQ/exec";
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const token =
+      params.get("token");
+
+    let iframeUrl =
+      WEB_APP;
+
+    if (token) {
+
+      iframeUrl +=
+        "?token=" +
+        encodeURIComponent(token);
+
+    }
+
+    const frame =
+      document.getElementById(
+        "loanFrame"
+      );
+
+    frame.src =
+      iframeUrl;
+
+    window.onload = function () {
+
+      frame
+        .requestFullscreen()
+        .catch(err => {
+
+          console.error(err);
+
+        });
+
+    };
+
+  </script>
+
+</body>
+
+</html>
